@@ -1,2 +1,2 @@
 # Javascript_Programming
-Programs and Assignments in JavaScript language - js
+Programs and Assignments in JavaScript language
