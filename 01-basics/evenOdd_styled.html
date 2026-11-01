@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even or Odd Checker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .card {
+            background: #ffffff;
+            width: 90%;
+            max-width: 400px;
+            padding: 32px 28px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        h2 {
+            margin: 0 0 24px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 16px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background: #667eea;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        #outputMessage {
+            margin: 20px 0 0;
+            min-height: 28px;
+            padding: 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
+        }
+
+        /* Result styles, added from JavaScript */
+        #outputMessage.even,
+        #outputMessage.odd,
+        #outputMessage.error {
+            padding: 12px;
+            animation: pop 0.35s ease;
+        }
+
+        #outputMessage.even {
+            color: #1b7f3b;
+            background: #e6f7ec;
+        }
+
+        #outputMessage.odd {
+            color: #b45309;
+            background: #fff3e0;
+        }
+
+        #outputMessage.error {
+            color: #b42318;
+            background: #fdecea;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pop {
+            from { opacity: 0; transform: scale(0.9); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Check Even or Odd</h2>
+
+        <!-- Input field for the user -->
+        <label for="numInput">Enter a number:</label>
+        <input type="number" id="numInput" placeholder="e.g. 42">
+
+        <!-- Button to trigger the check -->
+        <button onclick="checkEven()">Check Number</button>
+
+        <!-- Paragraph to display the output -->
+        <p id="outputMessage"></p>
+    </div>
+
+    <script>
+        function checkEven()
+        {
+            
+            let output = document.getElementById("outputMessage");
+
+            // Get the value from the input element
+            let inputVal = document.getElementById("numInput").value;
+
+            // Convert the input value to a number
+            let No1 = Number(inputVal);
+
+            // Empty or decimal input is not a valid whole number
+            if (inputVal === "" || !Number.isInteger(No1))
+            {
+                
+
+               if(!Number.isInteger(No1))
+                {
+                    document.getElementById("outputMessage").innerText = "Decimal number is neither even nor odd";
+                }
+
+                else 
+                {
+                    output.innerText = "Please enter a whole number";
+                   output.className = "error";
+                   return;
+                }
+                
+            }
+
+            if ((No1 % 2) === 0)
+            {
+                output.innerText = "Given number is even";
+                output.className = "even";
+                console.log("Given number is even");
+            }
+            
+            else
+            {
+                output.innerText = "Given number is odd";
+                output.className = "odd";
+                console.log("Given number is odd");
+            }
+            
+        }
+        document.getElementById("numInput").addEventListener("keydown", function(event)
+{
+    if (event.key === "Enter")
+    {
+        checkEven();
+    }
+});
+    </script>
+
+</body>
+</html>
